@@ -1,0 +1,187 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #caf0f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: linear-gradient(135deg, #00b4d8, #90e0ef);
+    color: white;
+    border-radius: 12px;
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Header */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea-container {
+    margin-bottom: 25px;
+}
+/* Textarea Styles */
+textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 12px; /* Rounded corners */
+    border: 2px solid #ccc; /* Light border */
+    outline: none;
+    background-color: #fff;
+    color: #333; /* Dark text for better readability */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for border and shadow */
+    resize: vertical; /* Allow only vertical resizing */
+}
+
+/* Textarea Focus State */
+textarea:focus {
+    border-color: #00bcd4; /* Highlight the border on focus with blue */
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.6); /* Blue shadow when focused */
+}
+
+/* Placeholder Styling */
+textarea::placeholder {
+    color: #aaa; /* Light gray placeholder text */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+/* Textarea Hover Effect */
+textarea:hover {
+    border-color: #80d0c7; /* Change border to light green on hover */
+}
+
+
+.submit-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.submit-btn:active {
+    background-color: #1e7e34;
+}
+
+/* Results Section */
+.prediction-result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    display: none;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Individual result items */
+.result-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item strong {
+    color: #007bff;
+}
+
+/* Custom colors for different result types */
+.green-box {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid #28a745;
+}
+
+.red-box {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+}
+
+.neutral-box {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 5px solid #ffc107;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+
+    textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

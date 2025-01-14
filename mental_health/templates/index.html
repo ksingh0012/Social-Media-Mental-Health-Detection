@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health and Sentiment Prediction</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- Link to external CSS file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+</head>
+<body>
+    <div class="container">
+        <h1>Mental Health Prediction</h1>
+        <form id="predictionForm">
+            <div class="textarea-container">
+                <textarea name="text" id="text" placeholder="Enter your text here..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Predict</button>
+        </form>
+        
+        <div id="predictionResult" class="prediction-result">
+            <!-- Prediction results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission using AJAX
+        $('#predictionForm').on('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+
+            // Get the input text from the textarea
+            var text = $('#text').val();
+
+            // Show a loading message
+            $('#predictionResult').html('<p>Loading...</p>');
+
+            // Make an AJAX request to the backend
+            $.ajax({
+                type: 'POST',
+                url: '/predict',
+                data: { text: text },
+                success: function(response) {
+                    // Determine the type of result based on sentiment
+                    var resultClass = 'neutral-box'; // Default to neutral
+                    if (response.sentiment_prediction.toLowerCase() === 'positive') {
+                        resultClass = 'green-box';
+                    } else if (response.sentiment_prediction.toLowerCase() === 'negative') {
+                        resultClass = 'red-box';
+                    }
+
+                    // Display the prediction results
+                    $('#predictionResult').html(`  
+                        <div class="result-item ${resultClass}">
+                            <strong>Sentiment:</strong> ${response.sentiment_prediction}
+                        </div>
+                        <div class="result-item ${resultClass}">
+                            <strong>Stress Level:</strong> ${response.stress_prediction}
+                        </div>
+                        <div class="result-item ${resultClass}">
+                            <strong>Mental State:</strong> ${response.mental_state}
+                        </div>
+                    `).show();
+                },
+                error: function() {
+                    // Handle error response
+                    $('#predictionResult').html('<p>Error occurred while fetching prediction. Please try again.</p>').show();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
